@@ -24,6 +24,8 @@ sh-watch 'tests/**/*.js' --command='npm test'
 sh-watch 'tests/**/*.js' 'src/**/*.js' --command='npm test'
 ```
 
+Note: Make sure to pass the globs in as **strings**, else the shell will auto-expand them.
+
 ## Debugging
 
 This module uses [debug](https://github.com/visionmedia/debug).
