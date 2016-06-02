@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/queicherius/sh-watch#readme",
   "dependencies": {
+    "chokidar": "^1.5.1",
     "debounce": "^1.0.0",
     "debug": "^2.2.0",
     "exec-sh": "^0.2.0",
-    "gaze": "^1.0.0",
     "minimist": "^1.2.0"
   }
 }

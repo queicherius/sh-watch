@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-var gaze = require('gaze')
+var watch = require('chokidar').watch
 var args = require('minimist')(process.argv.slice(2))
 var debounce = require('debounce')
 var exec = debounce(require('exec-sh'), 250)
 var debug = require('debug')('sh-watch')
 
-var glob = args._.length > 0 ? args._ : ['**/*.*']
+var globs = args._.length > 0 ? args._ : ['**/*.*']
 var command = args.command
 
 if (!command) {
@@ -14,15 +14,18 @@ if (!command) {
 }
 
 debug('Command: ' + command)
-debug('Globs: ' + glob.join(', '))
-gaze(glob, function (err, watcher) {
-  if (err) {
-    console.log('Error starting watcher', err)
-    process.exit(1)
-  }
+debug('Globs: ' + globs.join(', '))
+var watcher = watch(globs)
 
-  this.on('all', function (event, filepath) {
-    debug(filepath + ' was ' + event)
-    exec(command)
-  })
-})
+watcher
+  .on('add', path => onChange('added', path))
+  .on('change', path => onChange('changed', path))
+  .on('unlink', path => onChange('removed', path))
+  .on('addDir', path => onChange('added', path))
+  .on('unlinkDir', path => onChange('removed', path))
+  .on('ready', () => debug('Initial scan complete. Waiting for changes.'))
+
+function onChange (event, filepath) {
+  debug(filepath + ' was ' + event)
+  exec(command)
+}
