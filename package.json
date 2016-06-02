@@ -1,0 +1,27 @@
+{
+  "name": "sh-watch",
+  "version": "0.0.0",
+  "description": "Globbing watcher cli tool",
+  "main": "index.js",
+  "bin": {"sh-watch": "index.js"},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/queicherius/sh-watch.git"
+  },
+  "author": "queicherius@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/queicherius/sh-watch/issues"
+  },
+  "homepage": "https://github.com/queicherius/sh-watch#readme",
+  "dependencies": {
+    "debounce": "^1.0.0",
+    "debug": "^2.2.0",
+    "exec-sh": "^0.2.0",
+    "gaze": "^1.0.0",
+    "minimist": "^1.2.0"
+  }
+}
