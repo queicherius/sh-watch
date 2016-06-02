@@ -1,6 +1,6 @@
 {
   "name": "sh-watch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Globbing watcher cli tool",
   "main": "index.js",
   "bin": {
